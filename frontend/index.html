@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>建筑无障碍通路核验台</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header class="topbar">
+  <h1>建筑无障碍通路核验台</h1>
+  <div class="topbar-info">
+    <span id="network-status" class="status-badge">未导入路网</span>
+  </div>
+</header>
+
+<main class="layout">
+  <!-- 左侧控制面板 -->
+  <aside class="panel left-panel">
+    <section class="card">
+      <h2>路网导入</h2>
+      <p class="hint">导入包含楼层、节点、通道的 JSON 文件。</p>
+      <input type="file" id="import-file" accept=".json,application/json">
+      <button id="btn-import" class="btn primary">导入路网</button>
+      <div id="import-msg" class="msg"></div>
+      <div class="version-row">
+        <label>路网版本：</label>
+        <select id="network-version-select"></select>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>封闭时段登记</h2>
+      <div id="closure-list" class="closure-list">
+        <p class="hint">暂无封闭时段。</p>
+      </div>
+      <div class="closure-form">
+        <input type="text" id="closure-edge" placeholder="通道 ID (如 e3)">
+        <input type="datetime-local" id="closure-start" step="1">
+        <input type="datetime-local" id="closure-end" step="1">
+        <input type="text" id="closure-tz" placeholder="时区 (如 Asia/Shanghai)" value="Asia/Shanghai">
+        <button id="btn-add-closure" class="btn">登记封闭时段</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>轮椅路线查询</h2>
+      <div class="form-grid">
+        <label>起点
+          <input type="text" id="q-start" placeholder="节点 ID">
+        </label>
+        <label>终点
+          <input type="text" id="q-end" placeholder="节点 ID">
+        </label>
+        <label>出发时刻
+          <input type="datetime-local" id="q-departure" step="1">
+        </label>
+        <label>最小净宽 (m)
+          <input type="number" id="q-min-width" step="0.01" value="0.9">
+        </label>
+        <label>最大坡度 (°)
+          <input type="number" id="q-max-slope" step="0.1" value="8">
+        </label>
+      </div>
+      <button id="btn-query" class="btn primary">查询路线</button>
+      <div id="query-msg" class="msg"></div>
+    </section>
+  </aside>
+
+  <!-- 中间楼层图 -->
+  <section class="panel map-panel">
+    <div class="map-toolbar">
+      <div id="floor-tabs" class="floor-tabs"></div>
+      <div class="map-legend">
+        <span class="legend-item"><span class="dot entrance"></span>出入口</span>
+        <span class="legend-item"><span class="dot room"></span>房间</span>
+        <span class="legend-item"><span class="dot junction"></span>节点</span>
+        <span class="legend-item"><span class="line corridor"></span>通道</span>
+        <span class="legend-item"><span class="line elevator"></span>电梯</span>
+        <span class="legend-item"><span class="line ramp"></span>坡道</span>
+        <span class="legend-item"><span class="line stairs"></span>楼梯</span>
+      </div>
+    </div>
+    <div id="map-container" class="map-container">
+      <svg id="floor-svg" xmlns="http://www.w3.org/2000/svg"></svg>
+    </div>
+    <div id="node-info" class="node-info"></div>
+  </section>
+
+  <!-- 右侧结果面板 -->
+  <aside class="panel right-panel">
+    <section class="card">
+      <h2>核验结果</h2>
+      <div id="result-panel">
+        <p class="hint">请先查询路线。</p>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>历史核验记录</h2>
+      <div id="records-list" class="records-list">
+        <p class="hint">暂无记录。</p>
+      </div>
+    </section>
+  </aside>
+</main>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

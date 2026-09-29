@@ -1,0 +1,49 @@
+{
+  "floors": [
+    { "id": "f1", "name": "1F", "level": 0 },
+    { "id": "f2", "name": "2F", "level": 1 }
+  ],
+  "nodes": [
+    { "id": "n1", "floor_id": "f1", "x": 0, "y": 0, "kind": "entrance", "name": "主入口" },
+    { "id": "n2", "floor_id": "f1", "x": 10, "y": 0, "kind": "junction", "name": "门厅" },
+    { "id": "n3", "floor_id": "f1", "x": 20, "y": 0, "kind": "elevator", "name": "1F电梯" },
+    { "id": "n4", "floor_id": "f1", "x": 10, "y": -10, "kind": "junction", "name": "坡道起点" },
+    { "id": "n5", "floor_id": "f1", "x": 10, "y": 10, "kind": "room", "name": "101室" },
+    { "id": "n6", "floor_id": "f1", "x": 20, "y": 10, "kind": "junction", "name": "楼梯间" },
+    { "id": "n7", "floor_id": "f1", "x": 20, "y": 20, "kind": "junction", "name": "楼梯平台" },
+    { "id": "n8", "floor_id": "f2", "x": 20, "y": 0, "kind": "elevator", "name": "2F电梯" },
+    { "id": "n9", "floor_id": "f2", "x": 30, "y": 0, "kind": "junction", "name": "过厅" },
+    { "id": "n10", "floor_id": "f2", "x": 10, "y": -10, "kind": "junction", "name": "坡道出口" },
+    { "id": "n11", "floor_id": "f2", "x": 30, "y": 10, "kind": "room", "name": "201室" },
+    { "id": "n12", "floor_id": "f2", "x": 30, "y": -10, "kind": "room", "name": "202室" },
+    { "id": "n13", "floor_id": "f1", "x": 0, "y": -10, "kind": "exit", "name": "安全出口" }
+  ],
+  "edges": [
+    { "id": "e1", "from": "n1", "to": "n2", "type": "corridor", "length": 10, "seconds": 12, "width": 1.8, "slope": 0 },
+    { "id": "e2", "from": "n2", "to": "n1", "type": "corridor", "length": 10, "seconds": 12, "width": 1.8, "slope": 0 },
+    { "id": "e3", "from": "n2", "to": "n3", "type": "corridor", "length": 10, "seconds": 12, "width": 1.8, "slope": 0 },
+    { "id": "e4", "from": "n3", "to": "n2", "type": "corridor", "length": 10, "seconds": 12, "width": 1.8, "slope": 0 },
+    { "id": "e5", "from": "n3", "to": "n8", "type": "elevator", "length": 4, "seconds": 20, "width": 1.2, "slope": 0 },
+    { "id": "e6", "from": "n8", "to": "n3", "type": "elevator", "length": 4, "seconds": 20, "width": 1.2, "slope": 0 },
+    { "id": "e7", "from": "n8", "to": "n9", "type": "corridor", "length": 10, "seconds": 12, "width": 1.8, "slope": 0 },
+    { "id": "e8", "from": "n9", "to": "n8", "type": "corridor", "length": 10, "seconds": 12, "width": 1.8, "slope": 0 },
+    { "id": "e9", "from": "n2", "to": "n4", "type": "corridor", "length": 10, "seconds": 12, "width": 1.5, "slope": 0 },
+    { "id": "e10", "from": "n4", "to": "n2", "type": "corridor", "length": 10, "seconds": 12, "width": 1.5, "slope": 0 },
+    { "id": "e11", "from": "n4", "to": "n10", "type": "ramp", "length": 12, "seconds": 18, "width": 1.2, "slope": 5 },
+    { "id": "e12", "from": "n10", "to": "n4", "type": "ramp", "length": 12, "seconds": 18, "width": 1.2, "slope": 5 },
+    { "id": "e13", "from": "n10", "to": "n9", "type": "corridor", "length": 20, "seconds": 24, "width": 1.5, "slope": 0 },
+    { "id": "e14", "from": "n9", "to": "n10", "type": "corridor", "length": 20, "seconds": 24, "width": 1.5, "slope": 0 },
+    { "id": "e15", "from": "n9", "to": "n11", "type": "corridor", "length": 10, "seconds": 12, "width": 1.5, "slope": 0 },
+    { "id": "e16", "from": "n11", "to": "n9", "type": "corridor", "length": 10, "seconds": 12, "width": 1.5, "slope": 0 },
+    { "id": "e17", "from": "n9", "to": "n12", "type": "corridor", "length": 10, "seconds": 12, "width": 1.5, "slope": 0 },
+    { "id": "e18", "from": "n12", "to": "n9", "type": "corridor", "length": 10, "seconds": 12, "width": 1.5, "slope": 0 },
+    { "id": "e19", "from": "n2", "to": "n5", "type": "corridor", "length": 10, "seconds": 12, "width": 1.5, "slope": 0 },
+    { "id": "e20", "from": "n5", "to": "n2", "type": "corridor", "length": 10, "seconds": 12, "width": 1.5, "slope": 0 },
+    { "id": "e21", "from": "n2", "to": "n6", "type": "corridor", "length": 10, "seconds": 12, "width": 1.5, "slope": 0 },
+    { "id": "e22", "from": "n6", "to": "n2", "type": "corridor", "length": 10, "seconds": 12, "width": 1.5, "slope": 0 },
+    { "id": "e23", "from": "n6", "to": "n7", "type": "stairs", "length": 6, "seconds": 15, "width": 1.0, "slope": 30 },
+    { "id": "e24", "from": "n7", "to": "n6", "type": "stairs", "length": 6, "seconds": 15, "width": 1.0, "slope": 30 },
+    { "id": "e25", "from": "n1", "to": "n13", "type": "corridor", "length": 10, "seconds": 12, "width": 1.5, "slope": 0 },
+    { "id": "e26", "from": "n13", "to": "n1", "type": "corridor", "length": 10, "seconds": 12, "width": 1.5, "slope": 0 }
+  ]
+}
