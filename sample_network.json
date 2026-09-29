@@ -1,0 +1,53 @@
+{
+  "name": "示例综合楼（B1/F1/F2/夹层）",
+  "nodes": [
+    {"id": "B1_LOBBY", "name": "B1 停车门厅", "floor": "B1", "x": 60, "y": 200, "type": "junction"},
+    {"id": "B1_ELEV", "name": "B1 电梯厅", "floor": "B1", "x": 250, "y": 200, "type": "junction"},
+    {"id": "B1_STAIR", "name": "B1 楼梯口", "floor": "B1", "x": 420, "y": 200, "type": "junction"},
+
+    {"id": "F1_ENT", "name": "一层主入口", "floor": "F1", "x": 50, "y": 120, "type": "entrance"},
+    {"id": "F1_HALL", "name": "一层大厅", "floor": "F1", "x": 250, "y": 200, "type": "junction"},
+    {"id": "F1_R101", "name": "101 会议室", "floor": "F1", "x": 470, "y": 110, "type": "room"},
+    {"id": "F1_R102", "name": "102 办公室", "floor": "F1", "x": 470, "y": 290, "type": "room"},
+    {"id": "F1_NJ", "name": "一层窄廊转角", "floor": "F1", "x": 360, "y": 40, "type": "junction"},
+    {"id": "F1_ELEV", "name": "一层电梯厅", "floor": "F1", "x": 100, "y": 330, "type": "junction"},
+    {"id": "F1_RAMP", "name": "一层坡道入口", "floor": "F1", "x": 250, "y": 350, "type": "junction"},
+    {"id": "F1_STAIR", "name": "一层楼梯口", "floor": "F1", "x": 400, "y": 330, "type": "junction"},
+
+    {"id": "F2_ELEV", "name": "二层电梯厅", "floor": "F2", "x": 100, "y": 300, "type": "junction"},
+    {"id": "F2_RAMP", "name": "二层坡道出口", "floor": "F2", "x": 250, "y": 320, "type": "junction"},
+    {"id": "F2_STAIR", "name": "二层楼梯口", "floor": "F2", "x": 400, "y": 300, "type": "junction"},
+    {"id": "F2_HALL", "name": "二层大厅", "floor": "F2", "x": 250, "y": 170, "type": "junction"},
+    {"id": "F2_R201", "name": "201 资料室", "floor": "F2", "x": 470, "y": 170, "type": "room"},
+    {"id": "M1_PUMP", "name": "夹层水泵房（仅楼梯）", "floor": "M2", "x": 520, "y": 220, "type": "room"}
+  ],
+  "edges": [
+    {"id": "c_b1_lobby_elev", "name": "B1 门厅-电梯厅", "source": "B1_LOBBY", "target": "B1_ELEV", "type": "corridor", "length": 12, "traverse_seconds": 12, "clear_width": 2.0, "slope": 0, "one_way": false},
+    {"id": "c_b1_lobby_stair", "name": "B1 门厅-楼梯口", "source": "B1_LOBBY", "target": "B1_STAIR", "type": "corridor", "length": 18, "traverse_seconds": 18, "clear_width": 1.6, "slope": 0, "one_way": false},
+
+    {"id": "c_f1_ent_hall", "name": "入口大门通道", "source": "F1_ENT", "target": "F1_HALL", "type": "corridor", "length": 8, "traverse_seconds": 8, "clear_width": 2.2, "slope": 0, "one_way": false},
+    {"id": "c_f1_hall_101", "name": "大厅-101", "source": "F1_HALL", "target": "F1_R101", "type": "corridor", "length": 10, "traverse_seconds": 10, "clear_width": 1.8, "slope": 0, "one_way": false},
+    {"id": "c_f1_hall_102", "name": "大厅-102 主通道", "source": "F1_HALL", "target": "F1_R102", "type": "corridor", "length": 9, "traverse_seconds": 9, "clear_width": 1.5, "slope": 0, "one_way": false},
+    {"id": "c_f1_hall_nj", "name": "大厅-窄廊", "source": "F1_HALL", "target": "F1_NJ", "type": "corridor", "length": 14, "traverse_seconds": 14, "clear_width": 0.72, "slope": 0, "one_way": false},
+    {"id": "c_f1_nj_102", "name": "窄廊-102", "source": "F1_NJ", "target": "F1_R102", "type": "corridor", "length": 12, "traverse_seconds": 12, "clear_width": 0.72, "slope": 0, "one_way": false},
+    {"id": "c_f1_hall_elev", "name": "大厅-电梯厅", "source": "F1_HALL", "target": "F1_ELEV", "type": "corridor", "length": 7, "traverse_seconds": 7, "clear_width": 1.9, "slope": 0, "one_way": false},
+    {"id": "c_f1_hall_ramp", "name": "大厅-坡道入口", "source": "F1_HALL", "target": "F1_RAMP", "type": "corridor", "length": 6, "traverse_seconds": 6, "clear_width": 2.0, "slope": 0, "one_way": false},
+    {"id": "c_f1_hall_stair", "name": "大厅-楼梯口", "source": "F1_HALL", "target": "F1_STAIR", "type": "corridor", "length": 8, "traverse_seconds": 8, "clear_width": 1.7, "slope": 0, "one_way": false},
+
+    {"id": "c_f2_elev_hall", "name": "电梯厅-二层大厅", "source": "F2_ELEV", "target": "F2_HALL", "type": "corridor", "length": 9, "traverse_seconds": 9, "clear_width": 1.9, "slope": 0, "one_way": false},
+    {"id": "c_f2_ramp_hall", "name": "坡道出口-二层大厅", "source": "F2_RAMP", "target": "F2_HALL", "type": "corridor", "length": 10, "traverse_seconds": 10, "clear_width": 2.0, "slope": 0, "one_way": false},
+    {"id": "c_f2_stair_hall", "name": "楼梯口-二层大厅", "source": "F2_STAIR", "target": "F2_HALL", "type": "corridor", "length": 9, "traverse_seconds": 9, "clear_width": 1.7, "slope": 0, "one_way": false},
+    {"id": "c_f2_hall_201", "name": "大厅-201", "source": "F2_HALL", "target": "F2_R201", "type": "corridor", "length": 11, "traverse_seconds": 11, "clear_width": 1.6, "slope": 0, "one_way": false},
+
+    {"id": "el_b1_f1", "name": "电梯 B1↔F1", "source": "B1_ELEV", "target": "F1_ELEV", "type": "elevator", "length": 4, "traverse_seconds": 30, "clear_width": 1.1, "slope": 0, "one_way": false},
+    {"id": "el_f1_f2", "name": "电梯 F1↔F2", "source": "F1_ELEV", "target": "F2_ELEV", "type": "elevator", "length": 4, "traverse_seconds": 30, "clear_width": 1.1, "slope": 0, "one_way": false},
+
+    {"id": "rp_f1_f2", "name": "无障碍坡道 F1↔F2（较陡）", "source": "F1_RAMP", "target": "F2_RAMP", "type": "ramp", "length": 25, "traverse_seconds": 40, "clear_width": 1.5, "slope": 12, "one_way": false},
+
+    {"id": "st_b1_f1", "name": "楼梯 B1→F1", "source": "B1_STAIR", "target": "F1_STAIR", "type": "stairs", "length": 10, "traverse_seconds": 20, "clear_width": 1.4, "slope": 35, "one_way": true},
+    {"id": "st_f1_b1", "name": "楼梯 F1→B1", "source": "F1_STAIR", "target": "B1_STAIR", "type": "stairs", "length": 10, "traverse_seconds": 20, "clear_width": 1.4, "slope": 35, "one_way": true},
+    {"id": "st_f1_f2", "name": "楼梯 F1→F2", "source": "F1_STAIR", "target": "F2_STAIR", "type": "stairs", "length": 10, "traverse_seconds": 20, "clear_width": 1.4, "slope": 35, "one_way": true},
+    {"id": "st_f2_f1", "name": "楼梯 F2→F1", "source": "F2_STAIR", "target": "F1_STAIR", "type": "stairs", "length": 10, "traverse_seconds": 20, "clear_width": 1.4, "slope": 35, "one_way": true},
+    {"id": "st_f2_m1", "name": "楼梯 F2→夹层水泵房", "source": "F2_STAIR", "target": "M1_PUMP", "type": "stairs", "length": 6, "traverse_seconds": 15, "clear_width": 1.3, "slope": 40, "one_way": false}
+  ]
+}

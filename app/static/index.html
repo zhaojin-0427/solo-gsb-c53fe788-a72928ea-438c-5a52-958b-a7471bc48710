@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>建筑无障碍通路核验台</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<header>
+  <h1>🏗️ 建筑无障碍通路核验台</h1>
+  <div id="active-info" class="active-info">尚未导入路网</div>
+</header>
+
+<nav class="tabs">
+  <button class="tab active" data-tab="network">① 路网导入</button>
+  <button class="tab" data-tab="closures">② 封闭时段</button>
+  <button class="tab" data-tab="route">③ 路线核验</button>
+  <button class="tab" data-tab="records">④ 核验记录</button>
+</nav>
+
+<main>
+  <!-- 路网导入 -->
+  <section id="tab-network" class="panel active">
+    <div class="toolbar">
+      <button id="btn-load-sample" class="btn">载入示例路网</button>
+      <label class="btn file-btn">选择 JSON 文件导入
+        <input type="file" id="file-import" accept=".json,application/json" hidden>
+      </label>
+      <span class="hint">也可直接粘贴 JSON 后导入</span>
+    </div>
+    <textarea id="network-json" rows="14"
+      placeholder='{"name":"...","nodes":[...],"edges":[...]}'></textarea>
+    <div class="toolbar">
+      <button id="btn-import" class="btn primary">校验并导入为新版本</button>
+    </div>
+    <div id="network-msg"></div>
+    <div id="network-overview"></div>
+    <h3>历史版本</h3>
+    <table id="versions-table" class="data-table">
+      <thead><tr><th>ID</th><th>名称</th><th>导入时间(UTC)</th>
+        <th>楼层/节点/边</th><th>状态</th><th>操作</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <!-- 封闭时段 -->
+  <section id="tab-closures" class="panel">
+    <div class="card">
+      <h3>登记通道封闭时段（含时区，半开区间 [开始, 结束)）</h3>
+      <div class="form-grid">
+        <label>通道边
+          <select id="cl-edge"></select>
+        </label>
+        <label>开始（当地）
+          <input type="datetime-local" id="cl-start" step="1">
+        </label>
+        <label>时区
+          <select id="cl-tz"></select>
+        </label>
+        <label>结束（当地）
+          <input type="datetime-local" id="cl-end" step="1">
+        </label>
+      </div>
+      <div class="toolbar">
+        <button id="btn-add-closure" class="btn primary">登记封闭时段</button>
+        <span class="hint">提交时将按所选时区换算为带偏移的 ISO 8601 时刻</span>
+      </div>
+      <div id="closure-msg"></div>
+    </div>
+    <h3>当前版本的封闭时段</h3>
+    <table id="closures-table" class="data-table">
+      <thead><tr><th>ID</th><th>边</th><th>原始开始</th><th>原始结束</th>
+        <th>UTC 区间</th><th>操作</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <!-- 路线核验 -->
+  <section id="tab-route" class="panel">
+    <div class="card">
+      <h3>轮椅路线查询</h3>
+      <div class="form-grid">
+        <label>起点
+          <select id="rt-start"></select>
+        </label>
+        <label>终点
+          <select id="rt-goal"></select>
+        </label>
+        <label>出发（当地）
+          <input type="datetime-local" id="rt-departure" step="1">
+        </label>
+        <label>时区
+          <select id="rt-tz"></select>
+        </label>
+        <label>最小净宽 (m)
+          <input type="number" id="rt-width" value="0.9" min="0" step="0.05">
+        </label>
+        <label>最大坡度 (%)
+          <input type="number" id="rt-slope" value="8.33" min="0" step="0.1">
+        </label>
+      </div>
+      <div class="toolbar">
+        <button id="btn-query" class="btn primary">查询（出发后 24 小时内最早到达）</button>
+      </div>
+      <div id="route-msg"></div>
+    </div>
+    <div id="route-result"></div>
+    <div id="floors"></div>
+  </section>
+
+  <!-- 核验记录 -->
+  <section id="tab-records" class="panel">
+    <p class="hint">每条记录固化了当时的路网与封闭时段快照；之后导入新路或修改封闭时段均不影响旧结果。</p>
+    <table id="records-table" class="data-table">
+      <thead><tr><th>记录</th><th>路网版本</th><th>时间(UTC)</th>
+        <th>起 → 终</th><th>出发时刻</th><th>净宽/坡度</th><th>结果</th><th></th></tr></thead>
+      <tbody></tbody>
+    </table>
+    <div id="record-detail"></div>
+  </section>
+</main>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
